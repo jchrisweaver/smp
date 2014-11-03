@@ -15,7 +15,7 @@ Shane Tully wrote an implementation of the protocol in Python that does a great 
 
 I have borrowed extensively from Shane's implementation, using his function names and even variable names in order to show the translation.
 
-You can read Shane's blog post and find his original code <a href"https://shanetully.com/2013/08/mitm-protection-via-the-socialist-millionaire-protocol-otr-style/">here.</a>
+You can read Shane's blog post and find his original code <a href="https://shanetully.com/2013/08/mitm-protection-via-the-socialist-millionaire-protocol-otr-style/">here.</a>
 
 I have included his code in the smp-p subdirectory in this project with a few minor changes to make python to c socket communication easier.  Specifically, I added a 4-byte header to all socket comm that tells the receiver the expected size of the incoming data.
 
