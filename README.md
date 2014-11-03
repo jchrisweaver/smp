@@ -11,7 +11,7 @@ Background
 
 The Socialist Millionaire Protocol is a very useful method of assuring mutual trust between two parties in an untrustable environment.  Read more about it <a href="http://en.wikipedia.org/wiki/Socialist_millionaire">here</a> and <a href="http://twistedoakstudios.com/blog/Post3724_explain-it-like-im-five-the-socialist-millionaire-problem-and-secure-multi-party-computation">here.</a>
 
-Shane Tully wrote an implementation of the protocol in Python that does a great job of illustrating how it works.  However, there are many instances where a C implementation would be preferable, which was my motivation to create this project.
+<a href="https://shanetully.com/">Shane Tully</a> wrote an implementation of the protocol in Python that does a great job of illustrating how it works.  However, there are many instances where a C implementation would be preferable, which was my motivation to create this project.
 
 I have borrowed extensively from Shane's implementation, using his function names and even variable names in order to show the translation.
 
