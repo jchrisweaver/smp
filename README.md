@@ -20,6 +20,37 @@ You can read Shane's blog post and find his original code <a href="https://shane
 I have included his code in the smp-p subdirectory in this project with a few minor changes to make python to c socket communication easier.  Specifically, I added a 4-byte header to all socket comm that tells the receiver the expected size of the incoming data.
 
 
+Requirements
+---
+* Mac OS X
+* XCode
+* OpenSSL (I used openssl-1.0.1i)
 
 
+HOWTO
+---
+1.  Using XCode, compile the smp-c project
+2.  Start the python app with 'python smp-p/smp_test.py listen'
+3.  Start the C app either through XCode or from the command line
+4.  At the prompt for the C app from STDIN, enter a secret passphrase
+5.  At the prompt for the Python app, enter a matching passphrase.
+6.  Both apps will report a match or no match
 
+
+TODO
+---
+*  Complete the Python-as-client to C-as-server code path.  As of now, this code only works one way.  While fairly trivial to complete, I haven't done it yet
+*  Refactoring for tighter code
+
+CONTACT
+---
+Any questions, comments or bug fixes, feel free to contact me at jchrisweaver at gmail dot com
+
+
+LICENSE
+---
+My work is free to be used as is and is commited to public commons.
+If you find any bugs or make any enhancements, I'd appreciate it if you'd let me know.
+If you do use it, I'd also appreciate it if you'd give me a tweet at @jchrisweaver
+
+Enjoy.
