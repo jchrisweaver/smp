@@ -4,7 +4,7 @@ smp
 Socialist Millionaire Protocol implementation in C
 
 Chris Weaver
-11/3/2014
+11.3.2014
 
 Background
 ---
@@ -29,6 +29,7 @@ Requirements
 
 HOWTO
 ---
+0.  NOTE: Change hard coded IP address in smp.c to match your local ip address.  (It's on the TODO list to make this auto detect or command-line driven...)
 1.  Using XCode, compile the smp-c project
 2.  Start the python app with 'python smp-p/smp_test.py listen'
 3.  Start the C app either through XCode or from the command line
@@ -39,6 +40,7 @@ HOWTO
 
 TODO
 ---
+*  FIX: Remove hard-coded IP adderess in smp.c, make auto-detect or command-line
 *  Complete the Python-as-client to C-as-server code path.  As of now, this code only works one way.  While fairly trivial to complete, I haven't done it yet
 *  Refactoring for tighter code
 
