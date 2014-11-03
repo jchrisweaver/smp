@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>961FE4B3-1B76-48F4-BBD5-4A16ACA1082A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>smp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>56ACCA5F52B7DE76C1D6CD4FFD74A8898DCC238B</key>
+		<string>https://github.com/jchrisweaver/smp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>smp-c/xcode/smp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>56ACCA5F52B7DE76C1D6CD4FFD74A8898DCC238B</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jchrisweaver/smp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>56ACCA5F52B7DE76C1D6CD4FFD74A8898DCC238B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>56ACCA5F52B7DE76C1D6CD4FFD74A8898DCC238B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>smp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		834AA8D81A07E3C0007C8659 /* utils_openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 834AA8D61A07E3C0007C8659 /* utils_openssl.c */; };
+		834AA8DA1A07E468007C8659 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 834AA8D91A07E468007C8659 /* libcrypto.dylib */; };
+		83AAD0341A02AFCF00435D58 /* pack.c in Sources */ = {isa = PBXBuildFile; fileRef = 83AAD0281A02AFCF00435D58 /* pack.c */; };
+		83AAD0351A02AFCF00435D58 /* smp_support.c in Sources */ = {isa = PBXBuildFile; fileRef = 83AAD02A1A02AFCF00435D58 /* smp_support.c */; };
+		83AAD0361A02AFCF00435D58 /* smp.c in Sources */ = {isa = PBXBuildFile; fileRef = 83AAD02C1A02AFCF00435D58 /* smp.c */; };
+		83AAD0371A02AFCF00435D58 /* socket_helpers.c in Sources */ = {isa = PBXBuildFile; fileRef = 83AAD02E1A02AFCF00435D58 /* socket_helpers.c */; };
+		83AAD0391A02AFCF00435D58 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 83AAD0321A02AFCF00435D58 /* utils.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		834C018119D9E825005F7CA1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		834AA8D61A07E3C0007C8659 /* utils_openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils_openssl.c; path = ../smp/utils_openssl.c; sourceTree = "<group>"; };
+		834AA8D71A07E3C0007C8659 /* utils_openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils_openssl.h; path = ../smp/utils_openssl.h; sourceTree = "<group>"; };
+		834AA8D91A07E468007C8659 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		834C018319D9E825005F7CA1 /* smp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smp; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AAD0281A02AFCF00435D58 /* pack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pack.c; path = ../smp/pack.c; sourceTree = "<group>"; };
+		83AAD0291A02AFCF00435D58 /* pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pack.h; path = ../smp/pack.h; sourceTree = "<group>"; };
+		83AAD02A1A02AFCF00435D58 /* smp_support.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = smp_support.c; path = ../smp/smp_support.c; sourceTree = "<group>"; };
+		83AAD02B1A02AFCF00435D58 /* smp_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = smp_support.h; path = ../smp/smp_support.h; sourceTree = "<group>"; };
+		83AAD02C1A02AFCF00435D58 /* smp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smp.c; sourceTree = "<group>"; };
+		83AAD02D1A02AFCF00435D58 /* smp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = smp.h; path = ../smp/smp.h; sourceTree = "<group>"; };
+		83AAD02E1A02AFCF00435D58 /* socket_helpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = socket_helpers.c; path = ../smp/socket_helpers.c; sourceTree = "<group>"; };
+		83AAD02F1A02AFCF00435D58 /* socket_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = socket_helpers.h; path = ../smp/socket_helpers.h; sourceTree = "<group>"; };
+		83AAD0321A02AFCF00435D58 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils.c; path = ../smp/utils.c; sourceTree = "<group>"; };
+		83AAD0331A02AFCF00435D58 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../smp/utils.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		834C018019D9E825005F7CA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834AA8DA1A07E468007C8659 /* libcrypto.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		834C017A19D9E825005F7CA1 = {
+			isa = PBXGroup;
+			children = (
+				834AA8D91A07E468007C8659 /* libcrypto.dylib */,
+				834C018519D9E825005F7CA1 /* smp */,
+				834C018419D9E825005F7CA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		834C018419D9E825005F7CA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				834C018319D9E825005F7CA1 /* smp */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		834C018519D9E825005F7CA1 /* smp */ = {
+			isa = PBXGroup;
+			children = (
+				83AAD02D1A02AFCF00435D58 /* smp.h */,
+				83AAD02C1A02AFCF00435D58 /* smp.c */,
+				834AA8D61A07E3C0007C8659 /* utils_openssl.c */,
+				834AA8D71A07E3C0007C8659 /* utils_openssl.h */,
+				83AAD0291A02AFCF00435D58 /* pack.h */,
+				83AAD0281A02AFCF00435D58 /* pack.c */,
+				83AAD02B1A02AFCF00435D58 /* smp_support.h */,
+				83AAD02A1A02AFCF00435D58 /* smp_support.c */,
+				83AAD02F1A02AFCF00435D58 /* socket_helpers.h */,
+				83AAD02E1A02AFCF00435D58 /* socket_helpers.c */,
+				83AAD0331A02AFCF00435D58 /* utils.h */,
+				83AAD0321A02AFCF00435D58 /* utils.c */,
+			);
+			name = smp;
+			path = ../smp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		834C018219D9E825005F7CA1 /* smp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 834C018A19D9E825005F7CA1 /* Build configuration list for PBXNativeTarget "smp" */;
+			buildPhases = (
+				834C017F19D9E825005F7CA1 /* Sources */,
+				834C018019D9E825005F7CA1 /* Frameworks */,
+				834C018119D9E825005F7CA1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = smp;
+			productName = smp;
+			productReference = 834C018319D9E825005F7CA1 /* smp */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		834C017B19D9E825005F7CA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Chris Weaver";
+				TargetAttributes = {
+					834C018219D9E825005F7CA1 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 834C017E19D9E825005F7CA1 /* Build configuration list for PBXProject "smp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 834C017A19D9E825005F7CA1;
+			productRefGroup = 834C018419D9E825005F7CA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				834C018219D9E825005F7CA1 /* smp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		834C017F19D9E825005F7CA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83AAD0371A02AFCF00435D58 /* socket_helpers.c in Sources */,
+				83AAD0361A02AFCF00435D58 /* smp.c in Sources */,
+				834AA8D81A07E3C0007C8659 /* utils_openssl.c in Sources */,
+				83AAD0391A02AFCF00435D58 /* utils.c in Sources */,
+				83AAD0351A02AFCF00435D58 /* smp_support.c in Sources */,
+				83AAD0341A02AFCF00435D58 /* pack.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		834C018819D9E825005F7CA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		834C018919D9E825005F7CA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		834C018B19D9E825005F7CA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/chris/code/socialist/openssl-1.0.1i",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
+			};
+			name = Debug;
+		};
+		834C018C19D9E825005F7CA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/chris/code/socialist/openssl-1.0.1i",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		834C017E19D9E825005F7CA1 /* Build configuration list for PBXProject "smp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834C018819D9E825005F7CA1 /* Debug */,
+				834C018919D9E825005F7CA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		834C018A19D9E825005F7CA1 /* Build configuration list for PBXNativeTarget "smp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834C018B19D9E825005F7CA1 /* Debug */,
+				834C018C19D9E825005F7CA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 834C017B19D9E825005F7CA1 /* Project object */;
+}
