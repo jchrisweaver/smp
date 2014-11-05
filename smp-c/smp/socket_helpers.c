@@ -76,6 +76,7 @@ unsigned int revc_from_server( int sockfd, unsigned char* recvBuff, unsigned int
     if( n < 0 )
     {
         printf("\n Read error \n");
+        return -1;
     }
     
     memmove( recvBuff, ( recvBuff + 4 ), n - 1);
