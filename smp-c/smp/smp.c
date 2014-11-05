@@ -529,13 +529,20 @@ void cleanup()
     BN_clear_free( modOrder );
 }
 
+// usage: smp <IP address to connect to>
 int main( int argc, char** argv )
 {
+    if ( argc != 2 ) /* argc should be 2 for correct execution */
+    {
+        printf( "usage: smp <ipaddress>\n" );
+        return EXIT_FAILURE;
+    }
+    
     setup();
     
     char input_string[ 256 ];
     printf( "Enter a shared secret: " );
-    printf( "%s\n", readLine( input_string, 256 ) );
+    readLine( input_string, 256 );
     secret = binEncode( input_string, strlen( input_string ) );
 
     /*****************************************************/
@@ -547,8 +554,10 @@ int main( int argc, char** argv )
     memset( holder, 0x00, BUFFER_SIZE );
     int len = step1( holder, BUFFER_SIZE );
     
-    int serverfd = connect_to_server( "10.1.2.100" );
-//    int serverfd = connect_to_server( "172.31.98.173" );
+    int serverfd = connect_to_server( argv[ 1 ] );
+    if ( serverfd == 1 )
+        return EXIT_FAILURE;
+    
     write_to_server( serverfd, holder, len );
     // dumpBuff( holder, len );
     
@@ -587,5 +596,5 @@ int main( int argc, char** argv )
         printf( "Secrets do not match\n");
     
     cleanup();
-    return 1;
+    return EXIT_SUCCESS;
 }
