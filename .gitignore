@@ -35,8 +35,9 @@
 *.pyc
 
 # Directories
-smp-c/xcode/DerivedData/
-smp-c/xcode/build/
+DerivedData
+build
+xcuserdata
 
 # Xcode
 *.pbxuser
@@ -47,7 +48,6 @@ smp-c/xcode/build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-smp-c/xcode/xcuserdata/
 *.xccheckout
 *.moved-aside
 *.xcuserstate
