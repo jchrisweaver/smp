@@ -129,12 +129,12 @@ unsigned int step2( unsigned char* buffer, int buflen )
     BIGNUM* d2_new = BN_new();
     
     // (g2a, g3a, c1, d1, c2, d2) = unpackList(buffer)
-    unsigned char* ptr = unpackAndCompare( buffer, g2, g2a_new);
-    ptr = unpackAndCompare( ptr, g3, g3a_new);
-    ptr = unpackAndCompare( ptr, c1, c1_new);
-    ptr = unpackAndCompare( ptr, d1, d1_new);
-    ptr = unpackAndCompare( ptr, c2, c2_new);
-    ptr = unpackAndCompare( ptr, d2, d2_new);
+    unsigned char* ptr = simpleUnpack( buffer, g2a_new);
+    ptr = simpleUnpack( ptr, g3a_new);
+    ptr = simpleUnpack( ptr, c1_new);
+    ptr = simpleUnpack( ptr, d1_new);
+    ptr = simpleUnpack( ptr, c2_new);
+    ptr = simpleUnpack( ptr, d2_new);
     
     // if not self.checkLogProof('1', g2a, c1, d1):
     //    raise ValueError("Proof 1 check failed")
@@ -146,7 +146,7 @@ unsigned int step2( unsigned char* buffer, int buflen )
     if ( checkLogProof( "2", g3a_new, c2_new, d2_new ) != 1 )
         printf( "checkLogProof g3, c2, d2 failed!\n" );
     
-    g2a = g2a_new;
+//    g2a = g2a_new;
     g3a = g3a_new;
 
     BIGNUM* x2_new = createRandomExponent();
@@ -167,6 +167,9 @@ unsigned int step2( unsigned char* buffer, int buflen )
     createLogProof( "3", x2_new, c3_new, d3_new );
     createLogProof( "4", x3_new, c4_new, d4_new );
     
+    x2 = x2_new;
+    x3 = x3_new;
+    
     // self.gb2 = pow(self.g2a, self.x2, self.mod)
     BIGNUM* gb2_new = my_pow( g2a_new, x2_new, mod );
     gb2 = gb2_new;
@@ -179,6 +182,7 @@ unsigned int step2( unsigned char* buffer, int buflen )
     
     // self.pb = pow(self.gb3, r, self.mod)
     BIGNUM* pb_new = my_pow( gb3_new, r, mod );
+    pb = pb_new;
     
     // self.qb = mulm(pow(self.gen, r, self.mod), pow(self.gb2, self.secret, self.mod), self.mod)
     // Step A: pow(self.gen, r, self.mod)
@@ -188,7 +192,7 @@ unsigned int step2( unsigned char* buffer, int buflen )
     BIGNUM* stepB = my_pow( gb2_new, secret, mod );
     
     // Step C: mulm( StepA, StepB, self.mod)
-    BIGNUM* qb = mulm( stepA, stepB, mod );
+    qb = mulm( stepA, stepB, mod );
 
     // (c5, d5, d6) = self.createCoordsProof('5', self.gb2, self.gb3, r)
     BIGNUM* c5 = BN_new();
@@ -213,26 +217,26 @@ unsigned int step2( unsigned char* buffer, int buflen )
     
     // clean up
     BN_clear_free( g2a_new );
-    BN_clear_free( g3a_new );
+//    BN_clear_free( g3a_new );
     BN_clear_free( c1_new );
     BN_clear_free( d1_new );
     BN_clear_free( c2_new );
     BN_clear_free( d2_new );
-    BN_clear_free( x2_new );
-    BN_clear_free( x3_new );
+//    BN_clear_free( x2_new );
+//    BN_clear_free( x3_new );
     BN_clear_free( g2_new );
     BN_clear_free( g3_new );
     BN_clear_free( c3_new );
     BN_clear_free( d3_new );
     BN_clear_free( c4_new );
     BN_clear_free( d4_new );
-    BN_clear_free( gb2_new );
-    BN_clear_free( gb3_new );
+//    BN_clear_free( gb2_new );
+//    BN_clear_free( gb3_new );
     BN_clear_free( r );
-    BN_clear_free( pb_new );
+//    BN_clear_free( pb_new );
     BN_clear_free( stepA );
     BN_clear_free( stepB );
-    BN_clear_free( qb );
+//    BN_clear_free( qb );
     BN_clear_free( c5 );
     BN_clear_free( d5 );
     BN_clear_free( d6 );
@@ -520,8 +524,7 @@ void cleanup()
     BN_clear_free( qa );
     BN_clear_free( qb );
     BN_clear_free( pb );
-    BN_clear_free( g2a );
-    BN_clear_free( g3a );
+//    BN_clear_free( g3a );
     BN_clear_free( g3b );
     BN_clear_free( pa );
     BN_clear_free( mod );
@@ -534,61 +537,110 @@ int main( int argc, char** argv )
 {
     if ( argc != 2 ) /* argc should be 2 for correct execution */
     {
-        printf( "usage: smp <ipaddress>\n" );
+        printf( "usage:\n\tsmp <ipaddress>\n\tsmp server\n" );
         return EXIT_FAILURE;
     }
     
+    int bServerMode = strstr( "server", argv[ 1 ] ) != 0;
+
     setup();
     
-    char input_string[ 256 ];
-    printf( "Enter a shared secret: " );
-    readLine( input_string, 256 );
-    secret = binEncode( input_string, strlen( input_string ) );
-
-    /*****************************************************/
-    /*****************************************************/
-    /*  Do Step 1 and send to other side */
-    /*****************************************************/
-    /*****************************************************/
     unsigned char holder[ BUFFER_SIZE ];
     memset( holder, 0x00, BUFFER_SIZE );
-    int len = step1( holder, BUFFER_SIZE );
     
-    int serverfd = connect_to_server( argv[ 1 ] );
-    if ( serverfd == 1 )
-        return EXIT_FAILURE;
+    if ( !bServerMode )
+    {
+        // we are talking to the server at ip address argv[ 1 ]
+        char input_string[ 256 ];
+        //printf( "Enter a shared secret: " );
+        //readLine( input_string, 256 );
+        strcpy( input_string, "testme" );
+        secret = binEncode( input_string, strlen( input_string ) );
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Do Step 1 and send to other side */
+        /*****************************************************/
+        /*****************************************************/
+        int len = step1( holder, BUFFER_SIZE );
+        
+        int serverfd = connect_to_server( argv[ 1 ] );
+        if ( serverfd == 1 )
+            return EXIT_FAILURE;
+        
+        write_to_server( serverfd, holder, len );
+        // dumpBuff( holder, len );
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Get results from other side. */
+        /*  Other side performed Step 2. */
+        /*****************************************************/
+        /*****************************************************/
+        memset( holder, 0x00, BUFFER_SIZE );
+        len = revc_from_server( serverfd, holder, BUFFER_SIZE );
+        // dumpBuff( holder, len );
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Do Step 3 and send to the other side */
+        /*****************************************************/
+        /*****************************************************/
+        step3( holder, BUFFER_SIZE );
+        write_to_server( serverfd, holder, len );
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Get bytes from other side and do Step 5 */
+        /*****************************************************/
+        /*****************************************************/
+        memset( holder, 0x00, BUFFER_SIZE );
+        len = revc_from_server( serverfd, holder, BUFFER_SIZE );
+        // dumpBuff( holder, len );
+        
+        step5( holder, len );
+        
+        disconnect_from_server( serverfd );
+    }
+    else    // we are in server mode, other side will send us data first
+    {
+        int listenfd = listen_server();
+        /*if ( listenfd == 1 )
+            return EXIT_FAILURE;
+        TODO: error checking
+        */
+        
+        char input_string[ 256 ];
+        //printf( "Enter a shared secret: " );
+        //readLine( input_string, 256 );
+        strcpy( input_string, "testme" );
+        secret = binEncode( input_string, strlen( input_string ) );
+        
+        int len = revc_from_server( listenfd, holder, BUFFER_SIZE );
+        // dumpBuff( holder, BUFFER_SIZE);
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Do Step 2 and send to other side */
+        /*****************************************************/
+        /*****************************************************/
+        len = step2( holder, BUFFER_SIZE  );
+        write_to_server( listenfd, holder, len );
+
+        len = revc_from_server( listenfd, holder, BUFFER_SIZE );
+        // dumpBuff( holder, len );
+        
+        /*****************************************************/
+        /*****************************************************/
+        /*  Do Step 4 and send to other side */
+        /*****************************************************/
+        /*****************************************************/
+        len = step4( holder, BUFFER_SIZE );
+        write_to_server( listenfd, holder, len );
+        
+        disconnect_from_server( listenfd );
+    }
     
-    write_to_server( serverfd, holder, len );
-    // dumpBuff( holder, len );
-    
-    /*****************************************************/
-    /*****************************************************/
-    /*  Get results from other side. */
-    /*  Other side performed Step 2. */
-    /*****************************************************/
-    /*****************************************************/
-    memset( holder, 0x00, BUFFER_SIZE );
-    len = revc_from_server( serverfd, holder, BUFFER_SIZE );
-    // dumpBuff( holder, len );
-    
-    /*****************************************************/
-    /*****************************************************/
-    /*  Do Step 3 and send to the other side */
-    /*****************************************************/
-    /*****************************************************/
-    step3( holder, BUFFER_SIZE );
-    write_to_server( serverfd, holder, len );
-    
-    /*****************************************************/
-    /*****************************************************/
-    /*  Get bytes from other side and do Step 5 */
-    /*****************************************************/
-    /*****************************************************/
-    memset( holder, 0x00, BUFFER_SIZE );
-    len = revc_from_server( serverfd, holder, BUFFER_SIZE );
-    // dumpBuff( holder, len );
-    
-    step5( holder, len );
     
     if ( match == 1 )
         printf( "Secrets match\n" );

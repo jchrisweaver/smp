@@ -19,7 +19,7 @@ int connect_to_server( char *server );
 unsigned int revc_from_server( int sockfd, unsigned char* recvBuff, unsigned int buf_len );
 void disconnect_from_server( int sockfd );
 unsigned int write_to_server( int connfd, unsigned char* sendBuff, unsigned int buf_len );
-int listen_server( int argc, char *argv[] );
+int listen_server( void );
 
 
 #endif /* defined(__Smp__socket_helpers__) */

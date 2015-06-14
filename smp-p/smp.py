@@ -8,6 +8,9 @@ import os
 import random
 import struct
 
+# Example how to debug values
+# print "Pg2 = {}\n".format( self.g2 )
+
 class SMP(object):
     def __init__(self, secret=None):
         # Note: This constant is split up onto multiple lines to preserve the formatting on my blog.

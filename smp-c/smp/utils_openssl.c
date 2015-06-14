@@ -204,6 +204,7 @@ unsigned char* unpackAndCompare( unsigned char* buffer_in, BIGNUM *bn_old, BIGNU
     if ( BN_cmp( bn_old, bn_new ) != 0 )
     {
         printf ( "unpackAndCompare: Failed\n" );
+        ptr = NULL;
     }
     return ptr;
 }

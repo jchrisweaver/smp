@@ -98,9 +98,9 @@ unsigned int write_to_server( int connfd, unsigned char* sendBuff, unsigned int 
     return ( int )len;
 }
 
-int listen_server( int argc, char *argv[] )
+int listen_server( void )
 {
-    int listenfd = 0, connfd = 0;
+    int listenfd = 0, connfd = 0, ret = -1;
     struct sockaddr_in serv_addr;
     
     listenfd = socket( AF_INET, SOCK_STREAM, 0 );
@@ -110,14 +110,25 @@ int listen_server( int argc, char *argv[] )
     serv_addr.sin_addr.s_addr = htonl( INADDR_ANY );
     serv_addr.sin_port = htons( 5000 );
     
-    bind( listenfd, ( struct sockaddr* )&serv_addr, sizeof( serv_addr ) );
+    ret = bind( listenfd, ( struct sockaddr* )&serv_addr, sizeof( serv_addr ) );
+    if ( ret != 0 )
+    {
+        printf( "\nbind failed\n" );
+        return -1;
+    }
     
-    listen( listenfd, 10 );
+    ret = listen( listenfd, 10 );
+    if ( ret != 0 )
+    {
+        printf( "\nlisten failed\n" );
+        return -1;
+    }
     
     while( connfd == 0 )
     {
         connfd = accept( listenfd, ( struct sockaddr* ) NULL, NULL);
         sleep( 1 );
     }
+    close( listenfd );
     return connfd;
 }

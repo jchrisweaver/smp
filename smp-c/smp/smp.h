@@ -32,7 +32,6 @@ BIGNUM* qa;
 BIGNUM* qb;
 BIGNUM* pb;
 
-BIGNUM* g2a;
 BIGNUM* g3a;
 BIGNUM* g3b;
 BIGNUM* pa;
