@@ -146,7 +146,6 @@ unsigned int step2( unsigned char* buffer, int buflen )
     if ( checkLogProof( "2", g3a_new, c2_new, d2_new ) != 1 )
         printf( "checkLogProof g3, c2, d2 failed!\n" );
     
-//    g2a = g2a_new;
     g3a = g3a_new;
 
     BIGNUM* x2_new = createRandomExponent();
@@ -217,26 +216,19 @@ unsigned int step2( unsigned char* buffer, int buflen )
     
     // clean up
     BN_clear_free( g2a_new );
-//    BN_clear_free( g3a_new );
     BN_clear_free( c1_new );
     BN_clear_free( d1_new );
     BN_clear_free( c2_new );
     BN_clear_free( d2_new );
-//    BN_clear_free( x2_new );
-//    BN_clear_free( x3_new );
     BN_clear_free( g2_new );
     BN_clear_free( g3_new );
     BN_clear_free( c3_new );
     BN_clear_free( d3_new );
     BN_clear_free( c4_new );
     BN_clear_free( d4_new );
-//    BN_clear_free( gb2_new );
-//    BN_clear_free( gb3_new );
     BN_clear_free( r );
-//    BN_clear_free( pb_new );
     BN_clear_free( stepA );
     BN_clear_free( stepB );
-//    BN_clear_free( qb );
     BN_clear_free( c5 );
     BN_clear_free( d5 );
     BN_clear_free( d6 );
@@ -524,7 +516,6 @@ void cleanup()
     BN_clear_free( qa );
     BN_clear_free( qb );
     BN_clear_free( pb );
-//    BN_clear_free( g3a );
     BN_clear_free( g3b );
     BN_clear_free( pa );
     BN_clear_free( mod );
