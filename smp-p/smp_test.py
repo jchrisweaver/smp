@@ -28,6 +28,7 @@ if sys.argv[1] == 'listen':
 
     # Prompt the user for a shared secret to use in SMP
     secret = raw_input("Enter shared secret: ")
+    # TESTCODE secret = "testme"
 
     # Create an SMP object with the calculated secret
     smp = smp.SMP(secret)
@@ -51,13 +52,16 @@ else:
 
     # Prompt the user for a shared secret to use in SMP
     secret = raw_input("Enter shared secret: ")
+    # TESTCODE secret = "testme"
 
     # Create an SMP object with the calculated secret
     smp = smp.SMP(secret)
 
     # Do the SMP protocol
     buffer = smp.step1()
+    #print "buffer = {}\n".format(  buffer )
     tempBuffer = padBytes( longToBytes( len( buffer ) + 4 ), 4 ) + buffer
+    
     sock.send( tempBuffer )
 
     buffer = sock.recv(4096)[4:]

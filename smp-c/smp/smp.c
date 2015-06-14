@@ -536,9 +536,9 @@ int main( int argc, char** argv )
     {
         // we are talking to the server at ip address argv[ 1 ]
         char input_string[ 256 ];
-        //printf( "Enter a shared secret: " );
-        //readLine( input_string, 256 );
-        strcpy( input_string, "testme" );
+        printf( "Enter a shared secret: " );
+        readLine( input_string, 256 );
+        // TESTCODE: strcpy( input_string, "testme" );
         secret = binEncode( input_string, strlen( input_string ) );
         
         /*****************************************************/
@@ -595,9 +595,9 @@ int main( int argc, char** argv )
         */
         
         char input_string[ 256 ];
-        //printf( "Enter a shared secret: " );
-        //readLine( input_string, 256 );
-        strcpy( input_string, "testme" );
+        printf( "Enter a shared secret: " );
+        readLine( input_string, 256 );
+        // TESTCODE: strcpy( input_string, "testme" );
         secret = binEncode( input_string, strlen( input_string ) );
         
         int len = revc_from_server( listenfd, holder, BUFFER_SIZE );
