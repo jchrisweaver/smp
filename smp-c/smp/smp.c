@@ -77,6 +77,7 @@ void setup()
     c2 = BN_new();
     d1 = BN_new();
     d2 = BN_new();
+    g3a = BN_new();
     
     // exponent used in step 1
     gen = BN_new();
@@ -122,7 +123,6 @@ unsigned int step1( unsigned char* buffer, int buflen )
 unsigned int step2( unsigned char* buffer, int buflen )
 {
     BIGNUM* g2a_new = BN_new();
-    BIGNUM* g3a_new = BN_new();
     BIGNUM* c1_new = BN_new();
     BIGNUM* d1_new = BN_new();
     BIGNUM* c2_new = BN_new();
@@ -130,7 +130,7 @@ unsigned int step2( unsigned char* buffer, int buflen )
     
     // (g2a, g3a, c1, d1, c2, d2) = unpackList(buffer)
     unsigned char* ptr = simpleUnpack( buffer, g2a_new);
-    ptr = simpleUnpack( ptr, g3a_new);
+    ptr = simpleUnpack( ptr, g3a);
     ptr = simpleUnpack( ptr, c1_new);
     ptr = simpleUnpack( ptr, d1_new);
     ptr = simpleUnpack( ptr, c2_new);
@@ -143,19 +143,19 @@ unsigned int step2( unsigned char* buffer, int buflen )
     
     // if not self.checkLogProof('2', g3a, c2, d2):
     //    raise ValueError("Proof 2 check failed")
-    if ( checkLogProof( "2", g3a_new, c2_new, d2_new ) != 1 )
+    if ( checkLogProof( "2", g3a, c2_new, d2_new ) != 1 )
         printf( "checkLogProof g3, c2, d2 failed!\n" );
     
-    g3a = g3a_new;
-
-    BIGNUM* x2_new = createRandomExponent();
-    BIGNUM* x3_new = createRandomExponent();
+    // self.x2 = createRandomExponent()
+    // self.x3 = createRandomExponent()
+    x2 = createRandomExponent();
+    x3 = createRandomExponent();
     
     // self.g2 = pow(self.gen, self.x2, self.mod)
-    BIGNUM* g2_new = my_pow( gen, x2_new, mod );
+    g2 = my_pow( gen, x2, mod );
 
     // self.g3 = pow(self.gen, self.x3, self.mod)
-    BIGNUM* g3_new = my_pow( gen, x3_new, mod );
+    g3 = my_pow( gen, x3, mod );
     
     BIGNUM* c3_new = BN_new();
     BIGNUM* d3_new = BN_new();
@@ -163,32 +163,26 @@ unsigned int step2( unsigned char* buffer, int buflen )
     BIGNUM* d4_new = BN_new();
     // (c3, d3) = self.createLogProof('3', self.x2)
     // (c4, d4) = self.createLogProof('4', self.x3)
-    createLogProof( "3", x2_new, c3_new, d3_new );
-    createLogProof( "4", x3_new, c4_new, d4_new );
-    
-    x2 = x2_new;
-    x3 = x3_new;
+    createLogProof( "3", x2, c3_new, d3_new );
+    createLogProof( "4", x3, c4_new, d4_new );
     
     // self.gb2 = pow(self.g2a, self.x2, self.mod)
-    BIGNUM* gb2_new = my_pow( g2a_new, x2_new, mod );
-    gb2 = gb2_new;
+    gb2 = my_pow( g2a_new, x2, mod );
     
     // self.gb3 = pow(self.g3a, self.x3, self.mod)
-    BIGNUM* gb3_new = my_pow( g3a_new, x3_new, mod );
-    gb3 = gb3_new;
+    gb3 = my_pow( g3a, x3, mod );
 
     BIGNUM* r = createRandomExponent();
     
     // self.pb = pow(self.gb3, r, self.mod)
-    BIGNUM* pb_new = my_pow( gb3_new, r, mod );
-    pb = pb_new;
+    pb = my_pow( gb3, r, mod );
     
     // self.qb = mulm(pow(self.gen, r, self.mod), pow(self.gb2, self.secret, self.mod), self.mod)
     // Step A: pow(self.gen, r, self.mod)
     BIGNUM* stepA = my_pow( gen, r, mod );
     
     // Step B: pow(self.gb2, self.secret, self.mod)
-    BIGNUM* stepB = my_pow( gb2_new, secret, mod );
+    BIGNUM* stepB = my_pow( gb2, secret, mod );
     
     // Step C: mulm( StepA, StepB, self.mod)
     qb = mulm( stepA, stepB, mod );
@@ -197,14 +191,14 @@ unsigned int step2( unsigned char* buffer, int buflen )
     BIGNUM* c5 = BN_new();
     BIGNUM* d5 = BN_new();
     BIGNUM* d6 = BN_new();
-    createCoordsProof( "5", gb2_new, gb3_new, r, c5, d5, d6 );
+    createCoordsProof( "5", gb2, gb3, r, c5, d5, d6 );
     
     // # Sends g2b, g3b, pb, qb, all the c's and d's
     // return packList(self.g2, self.g3, self.pb, self.qb, c3, d3, c4, d4, c5, d5, d6)
     memset( buffer, 0x00, buflen );
-    unsigned char* next = simplePack( buffer, g2_new );
-    next = simplePack( next, g3_new );
-    next = simplePack( next, pb_new );
+    unsigned char* next = simplePack( buffer, g2 );
+    next = simplePack( next, g3 );
+    next = simplePack( next, pb );
     next = simplePack( next, qb );
     next = simplePack( next, c3_new );
     next = simplePack( next, d3_new );
@@ -220,8 +214,6 @@ unsigned int step2( unsigned char* buffer, int buflen )
     BN_clear_free( d1_new );
     BN_clear_free( c2_new );
     BN_clear_free( d2_new );
-    BN_clear_free( g2_new );
-    BN_clear_free( g3_new );
     BN_clear_free( c3_new );
     BN_clear_free( d3_new );
     BN_clear_free( c4_new );
@@ -516,6 +508,7 @@ void cleanup()
     BN_clear_free( qa );
     BN_clear_free( qb );
     BN_clear_free( pb );
+    BN_clear_free( g3a );
     BN_clear_free( g3b );
     BN_clear_free( pa );
     BN_clear_free( mod );
